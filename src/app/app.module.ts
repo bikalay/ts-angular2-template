@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from './common/common.module';
+import { ItemModule } from './item/item.module';
+
 import {
   NgModule,
   ApplicationRef
@@ -62,7 +64,8 @@ type StoreType = {
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    CommonModule
+    CommonModule,
+    ItemModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
