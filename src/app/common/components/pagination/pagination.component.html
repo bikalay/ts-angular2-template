@@ -1,0 +1,3 @@
+<ul class="pagination">
+  <li *ngFor="let page of pageCount | numberArray" routerLinkActive="active"><a [routerLink]="[url]" [queryParams]="{ page: page-1, limit: limit, sort: sort }">{{page}}</a></li>
+</ul>

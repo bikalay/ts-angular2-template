@@ -2,7 +2,52 @@
   <div class="col-sm-8">
     <h1>Items list</h1>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-4 text-right">
     <button class="btn btn-primary">+ Add Item</button>
+  </div>
+</div>
+<div>
+  <div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>
+        <a [routerLink]="['/item']" [queryParams]="{ page: page, limit: limit, sort: ((sort == 'name') ? '-name' : 'name') }">Name</a>
+      </th>
+      <th>
+        <a [routerLink]="['/item']" [queryParams]="{ page: page, limit: limit, sort: ((sort == 'number') ? '-number' : 'number') }">Number</a>
+      </th>
+      <th>
+        <a [routerLink]="['/item']" [queryParams]="{ page: page, limit: limit, sort: ((sort == 'email') ? '-email' : 'email') }">Email</a>
+      </th>
+      <th>
+        Actions
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let item of items">
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{item.number}}
+      </td>
+      <td>
+        {{item.email}}
+      </td>
+      <td>
+        <a>View</a>
+        <a>Edit</a>
+        <a>Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="row">
+    <div class="col-sm-10">
+      <pagination [page]="[page]" [pageCount]="[pageCount]" [url]="['/item']" [limit]="[limit]" [sort]="[sort]"></pagination>
+    </div>
   </div>
 </div>
