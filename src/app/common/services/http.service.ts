@@ -13,7 +13,7 @@ export class HttpService {
 
   get(data) {
     return this.send(this.url, 'get', data).toPromise().then((r: Response)=>{
-      return r.json().data;
+      return r.json();
     });
   }
 
@@ -45,6 +45,7 @@ export class HttpService {
   }
 
   protected send(url:string, method:string, options?:any, data?:any) : Observable<Response> {
+    console.log(url, method, options, processUrl(url, method, options));
     const headers = new Headers();
 
     switch(method) {
@@ -106,7 +107,7 @@ function updateUrl(url, key, value, skip) {
   var processed = skip || false;
   value = paramToString(value);
 
-  var paramRegExp = new RegExp('(\/):'+key+'([\/\&\?$])','igm');
+  var paramRegExp = new RegExp('(\/):'+key+'([\/\&\?]|$)','igm');
   var queryRegExp = new RegExp('[\&\?]:'+key, 'igm');
   var isFirstQueryParameter = !/\?[\w_\$]/.test(url);
 

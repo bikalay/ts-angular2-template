@@ -3,7 +3,7 @@
     <h1>Items list</h1>
   </div>
   <div class="col-sm-4 text-right">
-    <button class="btn btn-primary">+ Add Item</button>
+    <a class="btn btn-primary" [routerLink]="['/item', 'create']">+ Add Item</a>
   </div>
 </div>
 <div>
@@ -37,7 +37,7 @@
         {{item.email}}
       </td>
       <td>
-        <a>View</a>
+        <a [routerLink]="['/item', item.oid]">View</a>
         <a>Edit</a>
         <a>Delete</a>
       </td>
