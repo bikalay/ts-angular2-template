@@ -6,7 +6,7 @@ import { HttpService } from './services/http.service';
 import { NumberArray } from './pipes/numberArray.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { DialogService } from './services/dialog.service';
-import { DialogHolderConponent } from './components/dialog-holder/dialog-holder.component';
+import { DialogHolderComponent } from './components/dialog-holder/dialog-holder.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
@@ -14,14 +14,14 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     MenuComponent,
     NumberArray,
     PaginationComponent,
-    DialogHolderConponent,
+    DialogHolderComponent,
     ConfirmComponent
   ],
   exports: [
     MenuComponent,
     NumberArray,
     PaginationComponent,
-    DialogHolderConponent,
+    DialogHolderComponent,
     ConfirmComponent
   ],
   imports: [ // import Angular's modules

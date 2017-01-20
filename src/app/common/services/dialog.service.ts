@@ -1,8 +1,14 @@
 import {Injectable} from "@angular/core";
-import {DialogHolderConponent} from "../components/dialog-holder/dialog-holder.component";
+import {DialogHolderComponent} from "../components/dialog-holder/dialog-holder.component";
+
 @Injectable()
 export class DialogService  {
-  dialogHolderComponent : DialogHolderConponent;
+
+  //TODO: try to create component from service
+  private dialogHolderComponent : DialogHolderComponent;
+  initialize(dialogHolderComponent : DialogHolderComponent) {
+    this.dialogHolderComponent = dialogHolderComponent;
+  }
   addDialog(dialogData) {
     return this.dialogHolderComponent.addDialog(dialogData);
   }
