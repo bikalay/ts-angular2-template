@@ -3,26 +3,37 @@ import {CommonModule as AngularCommonModule} from "@angular/common";
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpService } from './services/http.service';
-import { NumberArray } from "./pipes/numberArray.pipe";
-import { PaginationComponent } from "./components/pagination/pagination.component";
+import { NumberArray } from './pipes/numberArray.pipe';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { DialogService } from './services/dialog.service';
+import { DialogHolderConponent } from './components/dialog-holder/dialog-holder.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     NumberArray,
-    PaginationComponent
+    PaginationComponent,
+    DialogHolderConponent,
+    ConfirmComponent
   ],
   exports: [
     MenuComponent,
     NumberArray,
-    PaginationComponent
+    PaginationComponent,
+    DialogHolderConponent,
+    ConfirmComponent
   ],
   imports: [ // import Angular's modules
     RouterModule,
     AngularCommonModule
   ],
   providers: [
-    HttpService
+    HttpService,
+    DialogService
+  ],
+  entryComponents: [
+    ConfirmComponent
   ]
 })
 export class CommonModule {}

@@ -7,6 +7,8 @@ import {
 } from '../item.service';
 import {ItemModel} from '../models/item.model';
 import {ActivatedRoute, Params} from '@angular/router';
+import {DialogService} from "../../common/services/dialog.service";
+import {ConfirmComponent} from "../../common/components/confirm/confirm.component";
 
 @Component({
   // The selector is what angular internally uses
@@ -23,7 +25,7 @@ export class ItemListComponent implements OnInit {
   page: number;
   limit: number;
   sort: string;
-  constructor(private itemService: ItemService, private route: ActivatedRoute) {
+  constructor(private itemService: ItemService, private route: ActivatedRoute, private dialogService: DialogService) {
     this.items = [];
     this.pageCount = 0;
     this.page = 0;
@@ -47,10 +49,12 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteItem(item: ItemModel):void {
-    if(confirm('Are you sure?')) {
-      this.itemService.remove({oid: item.oid}).then(() => {
-        this.loadData();
-      })
-    }
+    this.dialogService.addDialog({component:ConfirmComponent, data: {message: `Are you sure you want delete ${item.name} item?`, title:`Delete item`}}).then((isConfirmed)=>{
+      if(isConfirmed) {
+        this.itemService.remove({oid: item.oid}).then(() => {
+          this.loadData();
+        })
+      }
+    });
   }
 }
