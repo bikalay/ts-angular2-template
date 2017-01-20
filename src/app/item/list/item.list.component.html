@@ -38,8 +38,8 @@
       </td>
       <td>
         <a [routerLink]="['/item', item.oid]">View</a>
-        <a>Edit</a>
-        <a>Delete</a>
+        <a [routerLink]="['/item', item.oid, 'edit']">Edit</a>
+        <a (click)="deleteItem(item)">Delete</a>
       </td>
     </tr>
     </tbody>

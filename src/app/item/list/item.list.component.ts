@@ -30,16 +30,27 @@ export class ItemListComponent implements OnInit {
     this.limit = 10;
   }
   ngOnInit(): void {
-    console.log(this.route.queryParams);
     this.route.queryParams.subscribe((params:Params) => {
         this.page = params['page'] || 0;
         this.limit = params['limit'] || 10;
         this.sort = params['sort'] || null;
-        const _params = {page: this.page, limit:this.limit, sort:this.sort};
-        return this.itemService.query(_params).then((result)=>{
-          this.items = result.data;
-          this.pageCount = result.pageCount;
-        });
+        this.loadData();
       });
+  }
+
+  loadData() {
+    const _params = {page: this.page, limit:this.limit, sort:this.sort};
+    return this.itemService.query(_params).then((result)=>{
+      this.items = result.data;
+      this.pageCount = result.pageCount;
+    });
+  }
+
+  deleteItem(item: ItemModel):void {
+    if(confirm('Are you sure?')) {
+      this.itemService.remove({oid: item.oid}).then(() => {
+        this.loadData();
+      })
+    }
   }
 }
