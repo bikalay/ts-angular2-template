@@ -1,5 +1,5 @@
 import {
-  Component, Input, OnDestroy
+  Component, OnDestroy
 } from '@angular/core';
 import {DialogService} from "../../services/dialog.service";
 
@@ -12,19 +12,19 @@ export class DialogComponent implements OnDestroy {
   private resolve: any;
   protected result: any;
 
-  constructor(protected dialogService: DialogService) {
-
-  }
+  constructor(protected dialogService: DialogService) {}
 
   fillData(data:any = {}) : Promise<any> {
-   this.data = data;
-   return new Promise((resolve)=>{
-     this.resolve = resolve;
-   });
+    Object.assign(this, data);
+    return new Promise((resolve)=>{
+      this.resolve = resolve;
+    });
   }
+
   close() {
     this.dialogService.removeDialog(this);
   }
+
   ngOnDestroy(): void {
     this.resolve(this.result);
   }

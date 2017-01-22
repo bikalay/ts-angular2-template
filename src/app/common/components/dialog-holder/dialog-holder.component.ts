@@ -1,5 +1,4 @@
 import {Component, ViewChild, ViewContainerRef, ComponentFactoryResolver} from "@angular/core";
-import {DialogService} from "../../services/dialog.service";
 import {DialogComponent} from "../dialog/dialog.component";
 
 @Component({
@@ -12,8 +11,8 @@ export class DialogHolderComponent {
 
   dialogs: Array<any> = [];
 
-  constructor(private resolver: ComponentFactoryResolver, private dialogService: DialogService) {
-    this.dialogService.initialize(this);
+  constructor(private resolver: ComponentFactoryResolver) {
+
   }
 
   addDialog(dialogData) {

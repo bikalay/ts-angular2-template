@@ -3,10 +3,8 @@ import {Http, Response, Headers} from '@angular/http';
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/toPromise';
 
-
 @Injectable()
 export class HttpService {
-
   constructor(private http: Http, public url:string) {
 
   }
@@ -28,21 +26,32 @@ export class HttpService {
       };
     });
   }
+
   create(options?:any, data?:any) {
     return this.send(this.url, 'post', options, data).toPromise().then((r: Response)=>{
       return r.json();
     });
   }
+
   remove(data) {
     return this.send(this.url, 'delete', data).toPromise().then((r: Response)=>{
       return r.json();
     });
   }
+
   update(options?:any, data?:any) {
     return this.send(this.url, 'put', options, data).toPromise().then((r: Response)=>{
       return r.json();
     });
   }
+
+  protected beforeRequest() {
+
+  };
+
+  protected afterResponse() {
+
+  };
 
   protected send(url:string, method:string, options?:any, data?:any) : Observable<Response> {
     console.log(url, method, options, processUrl(url, method, options));

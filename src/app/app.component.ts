@@ -25,7 +25,6 @@ import { AppState } from './app.service';
         <router-outlet></router-outlet>
       </main>
     </div>
-    <dialog-holder></dialog-holder>
   `
 })
 export class AppComponent implements OnInit {

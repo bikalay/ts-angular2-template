@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {CommonModule as AngularCommonModule} from "@angular/common";
+import { CommonModule as AngularCommonModule } from "@angular/common";
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpService } from './services/http.service';
@@ -33,7 +33,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     DialogService
   ],
   entryComponents: [
-    ConfirmComponent
+    ConfirmComponent,
+    DialogHolderComponent
   ]
 })
 export class CommonModule {}
