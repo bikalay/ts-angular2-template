@@ -49,12 +49,16 @@ export class ItemListComponent implements OnInit {
   }
 
   deleteItem(item: ItemModel):void {
-    this.dialogService.addDialog({component:ConfirmComponent, data: {message: `Are you sure you want delete ${item.name} item?`, title:`Delete item`}}).then((isConfirmed)=>{
+    let disposable = this.dialogService.addDialog(ConfirmComponent, {message: `Are you sure you want delete ${item.name} item?`, title:`Delete item`}).subscribe((isConfirmed)=>{
+      alert(isConfirmed);
       if(isConfirmed) {
         this.itemService.remove({oid: item.oid}).then(() => {
           this.loadData();
         })
       }
     });
+    setTimeout(()=>{
+      disposable.unsubscribe();
+    }, 5000);
   }
 }

@@ -1,13 +1,17 @@
-import {Component, ViewChild, ViewContainerRef, ComponentFactoryResolver} from "@angular/core";
+import {
+  Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, ReflectiveInjector,
+  Type
+} from "@angular/core";
 import {DialogComponent} from "../dialog/dialog.component";
+import {DialogWrapperComponent} from "../dialog-wrapper/dialog-wrapper.component";
 
 @Component({
   selector: 'dialog-holder',
-  template: '<div class="dialog-holder" #element></div>',
+  template: '<template #element></template>',
 })
 export class DialogHolderComponent {
 
-  @ViewChild('element', {read: ViewContainerRef}) private anchor: ViewContainerRef;
+  @ViewChild('element', {read: ViewContainerRef}) private element: ViewContainerRef;
 
   dialogs: Array<any> = [];
 
@@ -15,24 +19,31 @@ export class DialogHolderComponent {
 
   }
 
-  addDialog(dialogData) {
-    let factory = this.resolver.resolveComponentFactory(dialogData.component);
-    let componentRef = this.anchor.createComponent(factory, dialogData.index);
-    let component: DialogComponent = <DialogComponent> componentRef.instance;
-    if(typeof(dialogData.index) !== 'undefined') {
-      this.dialogs.splice(dialogData.index, 0, component)
+  addDialog(component:Type<DialogComponent>, data?:any, index?:number) {
+    let factory = this.resolver.resolveComponentFactory(DialogWrapperComponent);
+    let componentRef = this.element.createComponent(factory, index);
+    let dialogWrapper: DialogWrapperComponent = <DialogWrapperComponent> componentRef.instance;
+    let _component: DialogComponent =  dialogWrapper.addComponent(component);
+    if(typeof(index) !== 'undefined') {
+      this.dialogs.splice(index, 0, _component);
     }
     else {
-      this.dialogs.push(component);
+      this.dialogs.push(_component);
     }
-    return component.fillData(dialogData.data);
+    setTimeout(()=>{
+      dialogWrapper.show();
+    });
+    return _component.fillData(data);
   }
 
-  removeDialog(component) {
-    let index = this.dialogs.indexOf(component);
-    if(index>-1) {
-      this.anchor.remove(index);
-      this.dialogs.splice(index, 1);
-    }
+  removeDialog(component:DialogComponent) {
+    component.wrapper.hide();
+    setTimeout(()=>{
+      let index = this.dialogs.indexOf(component);
+      if(index>-1) {
+        this.element.remove(index);
+        this.dialogs.splice(index, 1);
+      }
+    }, 500);
   }
 }

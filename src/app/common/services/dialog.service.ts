@@ -1,7 +1,8 @@
 import {
-  Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef
+  Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, Type
 } from "@angular/core";
 import {DialogHolderComponent} from "../components/dialog-holder/dialog-holder.component";
+import {DialogComponent} from "../components/dialog/dialog.component";
 
 @Injectable()
 export class DialogService  {
@@ -12,10 +13,10 @@ export class DialogService  {
     this.dialogHolderComponent = this.createDialogHolder();
   }
 
-  addDialog(dialogData) {
-    return this.dialogHolderComponent.addDialog(dialogData);
+  addDialog(component:Type<DialogComponent>, data?:any, index?:number) {
+    return this.dialogHolderComponent.addDialog(component, data, index);
   }
-  removeDialog(component) {
+  removeDialog(component:DialogComponent) {
     return this.dialogHolderComponent.removeDialog(component);
   }
   private createDialogHolder(): DialogHolderComponent {
