@@ -7,7 +7,7 @@ import {
 } from '../item.service';
 import {ItemModel} from '../models/item.model';
 import {ActivatedRoute, Params} from '@angular/router';
-import {DialogService} from "../../common/services/dialog.service";
+import {DialogService} from "ng2-bootstrap-modal";
 import {ConfirmComponent} from "../../common/components/confirm/confirm.component";
 
 @Component({

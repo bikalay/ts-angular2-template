@@ -15,6 +15,7 @@ import { ItemService } from './item.service';
 import {CommonModule as AngularCommonModule} from "@angular/common";
 import { FormsModule } from '@angular/forms';
 import {CommonModule} from "../common/common.module";
+import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {CommonModule} from "../common/common.module";
   ],
   imports: [
     AngularCommonModule,
+    BootstrapModalModule,
     FormsModule,
     CommonModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),

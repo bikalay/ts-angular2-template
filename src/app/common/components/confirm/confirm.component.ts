@@ -1,8 +1,7 @@
 import {
   Component
 } from '@angular/core';
-import {DialogComponent} from "../dialog/dialog.component";
-import {DialogService} from "../../services/dialog.service";
+import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 
 @Component({
   selector: 'confirm',

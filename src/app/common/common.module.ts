@@ -5,9 +5,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HttpService } from './services/http.service';
 import { NumberArray } from './pipes/numberArray.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { DialogService } from './services/dialog.service';
-import { DialogHolderComponent } from './components/dialog-holder/dialog-holder.component';
-import { DialogWrapperComponent } from './components/dialog-wrapper/dialog-wrapper.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
@@ -15,9 +12,7 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     MenuComponent,
     NumberArray,
     PaginationComponent,
-    DialogHolderComponent,
     ConfirmComponent,
-    DialogWrapperComponent
   ],
   exports: [
     MenuComponent,
@@ -30,13 +25,10 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
     AngularCommonModule
   ],
   providers: [
-    HttpService,
-    DialogService
+    HttpService
   ],
   entryComponents: [
-    ConfirmComponent,
-    DialogHolderComponent,
-    DialogWrapperComponent
+    ConfirmComponent
   ]
 })
 export class CommonModule {}
