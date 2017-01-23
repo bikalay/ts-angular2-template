@@ -6,6 +6,7 @@ import { HttpService } from './services/http.service';
 import { NumberArray } from './pipes/numberArray.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
   ],
   imports: [ // import Angular's modules
     RouterModule,
-    AngularCommonModule
+    AngularCommonModule,
+    BootstrapModalModule
   ],
   providers: [
     HttpService
